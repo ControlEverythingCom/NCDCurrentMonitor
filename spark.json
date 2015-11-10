@@ -1,0 +1,7 @@
+{
+    "name": "NCDCurrentMonitor",
+    "version": "0.0.1",
+    "author": "Travis Elliott <travis@controlanything.com>",
+    "license": "GNU",
+    "description": "Library intended for the operation of NCD Current Monitor Controllers"
+}
