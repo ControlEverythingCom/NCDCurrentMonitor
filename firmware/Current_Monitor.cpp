@@ -58,7 +58,7 @@ void CurrentMonitor::setAddress(int a0, int a1, int a2, int a3){
 int CurrentMonitor::readCurrent(int channel){
 	Wire.beginTransmission(address);
 	Wire.write(1);
-	Wire.write(1);
+	Wire.write(channel);
 	int status = Wire.endTransmission();
 	if(status != 0){
 		Serial.println("Something went wrong");
