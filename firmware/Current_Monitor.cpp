@@ -66,18 +66,18 @@ int CurrentMonitor::readCurrent(int channel){
 	delay(100);
 	Wire.requestFrom(address, 4);
 	delay(100);
-	Serial.print("available bytes in wire: ");
-	Serial.println(Wire.available());
+//	Serial.print("available bytes in wire: ");
+//	Serial.println(Wire.available());
 	int channelNumber = Wire.read();
 	int MSB1 = Wire.read();
 	int MSB = Wire.read();
 	int LSB = Wire.read();
-	Serial.print("channel: ");
-	Serial.println(channelNumber);
-	Serial.print("MSB: ");
-	Serial.println(MSB);
-	Serial.print("LSB: ");
-	Serial.println(LSB);
+//	Serial.print("channel: ");
+//	Serial.println(channelNumber);
+//	Serial.print("MSB: ");
+//	Serial.println(MSB);
+//	Serial.print("LSB: ");
+//	Serial.println(LSB);
 	int val = (MSB1*65536)+(MSB*256)+LSB;
 	return val;
 }
