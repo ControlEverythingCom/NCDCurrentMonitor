@@ -58,7 +58,7 @@ void CurrentMonitor::setAddress(int a0, int a1, int a2, int a3){
 int CurrentMonitor::readCurrent(int channel){
 	Wire.beginTransmission(address);
 	Wire.write(1);
-	Wire.write(channel);
+	Wire.write(1);
 	int status = Wire.endTransmission();
 	if(status != 0){
 		Serial.println("Something went wrong");
@@ -66,18 +66,18 @@ int CurrentMonitor::readCurrent(int channel){
 	delay(100);
 	Wire.requestFrom(address, 4);
 	delay(100);
-//	Serial.print("available bytes in wire: ");
-//	Serial.println(Wire.available());
+	Serial.print("available bytes in wire: ");
+	Serial.println(Wire.available());
 	int channelNumber = Wire.read();
 	int MSB1 = Wire.read();
 	int MSB = Wire.read();
 	int LSB = Wire.read();
-//	Serial.print("channel: ");
-//	Serial.println(channelNumber);
-//	Serial.print("MSB: ");
-//	Serial.println(MSB);
-//	Serial.print("LSB: ");
-//	Serial.println(LSB);
+	Serial.print("channel: ");
+	Serial.println(channelNumber);
+	Serial.print("MSB: ");
+	Serial.println(MSB);
+	Serial.print("LSB: ");
+	Serial.println(LSB);
 	int val = (MSB1*65536)+(MSB*256)+LSB;
 	return val;
 }
@@ -101,6 +101,27 @@ int CurrentMonitor::readVoltage(int channel){
 	int LSB = Wire.read();
 	int val = (MSB1*65536)+(MSB*256)+LSB;
 	return val;
+}
+
+void CurrentMonitor::readCalibration(){
+	Wire.beginTransmission(address);
+	Wire.write(2);
+	Wire.write(1);
+	int status = Wire.endTransmission();
+	if(status != 0){
+		Serial.println("Something went wrong");
+	}
+	delay(100);
+	Wire.requestFrom(address, 3);
+	delay(100);
+	int first = Wire.read();
+	int second = Wire.read();
+	int third = Wire.read();
+	Serial.print(first);
+	Serial.print(", ");
+	Serial.print(second);
+	Serial.print(", ");
+	Serial.println(third);
 }
 
 

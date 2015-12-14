@@ -17,6 +17,8 @@
 
 	 int readVoltage(int channel);
 
+	 void readCalibration();
+
 	 bool initialized = false;
  private:
 
